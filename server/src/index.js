@@ -1,10 +1,12 @@
-import express, { Express, Request, Response } from "express";
+import express from "express";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import knex from "knex";
-import config from "./database/knexfile";
+import config from "./knexfile.js";
+import authRouter from "./routes/authRoutes.js";
 
 dotenv.config();
-const environment = process.env.ENV || "dev";
+const environment = process.env.ENV || "development";
 
 // Db connection
 const db = knex(config[environment]);
@@ -17,12 +19,15 @@ db.raw("SELECT 1")
     console.error("Error connecting to PostgreSQL database:", error);
   });
 
-const app: Express = express();
-const PORT = process.env.PORT;
-
-app.get("/", (req: Request, res: Response) => {
+const app = express();
+const PORT = process.env.PORT || 8000;
+app.use(bodyParser.json())
+app.get("/", (req, res) => {
   res.send("Server is up and running.");
 });
+
+
+app.use("/auth", authRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is up and running at PORT: ${PORT}`);
