@@ -2,47 +2,6 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import database from "../database/db.js"
 import { validateSignup } from "../validator.js"
-// const signToken = (id) => {
-//     return jwt.sign({ id }, process.env.JWT_SECRET, {
-//       expiresIn: process.env.JWT_EXPIRES_IN,
-//     });
-//   };
-
-// const createSendToken = (user, statusCode, res) => {
-//     const token = signToken(user._id);
-//     const cookieOptions = {
-//       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-//       httpOnly: true,
-//     };
-//     // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-
-//     res.cookie('jwt', token, cookieOptions);
-
-//     // Remove password from output
-//     user.password = undefined;
-
-//     res.status(statusCode).json({
-//       status: 'success',
-//       token,
-//       data: {
-//         user,
-//       },
-//     });
-//   };
-
-// const createUser = (user) => {
-//     return database.raw(
-//       "INSERT INTO users (username, password_digest, token, created_at) VALUES (?, ?, ?, ?) RETURNING id, username, created_at, token",
-//       [user.username, user.password_digest, user.token, new Date()]
-//     )
-//     .then((data) => data.rows[0])
-// }
-
-// const findUser = (userReq) => {
-//     return database.raw("SELECT * FROM users WHERE username = ?", [userReq.username])
-//       .then((data) => data.rows[0])
-// }
-
 
 export const signup = async (req, res) => {
 
@@ -138,4 +97,3 @@ export const login = async (req, res) => {
     })
 
 }
-// export function signup;plokjhgfcdvcfdxcfdsxcfvbhjkdfrcxvbjklopiughfcdx
