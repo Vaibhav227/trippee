@@ -1,9 +1,9 @@
-type KnexConfig = {
-  [key: string]: string | object;
-};
 
-const knexConfig: KnexConfig = {
-  dev: {
+
+
+
+const knexConfig = {
+  development: {
     client: "pg",
     connection: {
       host: "localhost",
